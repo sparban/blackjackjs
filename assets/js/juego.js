@@ -32,7 +32,7 @@ const pedirCarta = () => {
     if (deck.length === 0){
         throw 'Ya no hay cartas en el maso';
     }
-    const aleatorio = Math.floor(Math.random() * (deck.length - 0)) + 0;
+    const aleatorio = Math.floor(Math.random() * (deck.length - 0)) + 0;    // Numero aleatorio
     const carta = deck[aleatorio];
     // const carta = deck[aleatorio]
     deck.splice(aleatorio,1);   // Quito la carta seleccionada de la baraja
@@ -40,8 +40,36 @@ const pedirCarta = () => {
 };
 
 
-for (let i=0; i<=52; i++){
+/* for (let i=0; i<=52; i++){
     pedirCarta();
     console.log(deck);
+} */
+
+
+// Funcion para obtener el nombre de la carta
+
+/* const valorCarta = (carta) => {
+
+    const valor = carta.substring(0, carta.length -1);
+    let puntos = 0;
+
+    if (isNaN(valor)){
+        puntos = (valor === 'A') ? 11:10;
+    }
+    else{
+        puntos = valor*1;
+    }
+
+    return puntos;
+} */
+
+const valorCarta2 = (carta) => {
+    const valor = carta.substring(0, carta.length -1);
+    return (isNaN (valor)) ? 
+                    (valor === 'A') ? 11:10 
+                    : valor*1;
 }
 
+const valor = valorCarta2(pedirCarta());
+
+console.log(valor);
