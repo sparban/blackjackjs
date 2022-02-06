@@ -108,7 +108,7 @@ btnPedir.addEventListener('click', ()=>{
     const mensaje = (puntosJugador > 21)  ? (btnPedir.disabled = true, 
                                             btnDetener.disabled = true, 
                                             console.log('Perdiste'),
-                                            turnoComputadora(puntosJugador)):
+                                            alert('You lose')):
                     (puntosJugador === 21)? (btnPedir.disabled = true, 
                                             btnDetener.disabled = true, 
                                             console.log('Great, you could win'),
@@ -123,7 +123,35 @@ btnPedir.addEventListener('click', ()=>{
         turnoComputadora(puntosJugador);
         btnPedir.disabled = true;
         btnDetener.disabled = true;
+        divCartasJugador.remove;
+        divCartasComputadora.remove;
+        puntosJugador = 0;
+        puntosComputadora = 0;
     });
+
+    // Logica del boton de nuevo juego
+    btnNuevo.addEventListener('click', ()=>{
+
+        // limpiar consola
+        console.clear();
+        // reseteo el deck
+        deck = [];
+        deck = crearDeck();
+        console.log(deck);
+        // reseteo los puntos en pantalla
+        resultadoJugador[0].innerText = 0;
+        resultadoJugador[1].innerText = 0;
+        // reseteo los puntos de la logica
+        puntosComputadora = 0;
+        puntosJugador = 0;
+        // deshabilito botones
+        btnPedir.disabled = false;
+        btnbtnDetener.disabled = false;
+        // limpio la pantalla de las cartas
+        divCartasComputadora.innerHTML = '';
+        divCartasJugador.innerHTML = '';
+    });
+
 
     // Turno computadora
 const turnoComputadora = (puntosMinimos) => {
@@ -147,7 +175,28 @@ const turnoComputadora = (puntosMinimos) => {
     }
 
     } while((puntosComputadora < puntosMinimos) && (puntosMinimos < 21));
+
+    //setTimeout(()=>{ 
+
+    if (puntosJugador > 21){
+        alert('You lose');
+    }
+    else if (puntosComputadora > 21){
+        alert('You win');
+    }
+    else if (puntosJugador === puntosComputadora){
+        alert('anybody win');
+    }
+    else if (puntosJugador > puntosComputadora )
+    {
+        alert('you win');
+    }
+    else{
+        alert('You lose');
+    }
+    
+    //, 10);
 }     
 
-// Todo:borrar
+// T
 
