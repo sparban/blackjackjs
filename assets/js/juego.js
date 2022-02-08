@@ -2,7 +2,7 @@
 
 const miModulo = (()=>{
     
-//    'use strict'
+    'use strict'
     // C: clob, D:Diamond, H: heart, S:spades
 
     let deck = [];
@@ -156,7 +156,7 @@ const miModulo = (()=>{
     // Turno computadora
     const turnoComputadora = (puntosMinimos) => {
 
-        //let puntosComputadora = 0;
+        let puntosComputadora = 0;
         do {
             // resultado de la computadora
             const carta = pedirCarta();
@@ -208,19 +208,20 @@ const miModulo = (()=>{
         turnoComputadora(puntosJugadores[0]);
         btnPedir.disabled = true;
         btnDetener.disabled = true;
-        divCartasJugadores[0].remove;
-        divCartasJugadores.length.remove;
+        //divCartasJugadores[0].remove;
+        //divCartasJugadores.length.remove;
+
         //puntosJugador = 0;
         //puntosComputadora = 0;
         puntosJugadores = [0,0]
     });
 
     // Logica del boton de nuevo juego
-/*     btnNuevo.addEventListener('click', ()=>{
+    btnNuevo.addEventListener('click', ()=>{
         // limpiar consola
         console.clear();
         inicializarJuego();
-    }); */
+    });
     
     return {
         nuevoJuego: inicializarJuego
