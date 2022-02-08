@@ -1,6 +1,6 @@
 
 
-//(()=>{
+const miModulo = (()=>{
     
 //    'use strict'
     // C: clob, D:Diamond, H: heart, S:spades
@@ -23,9 +23,27 @@
 /*           divCartasJugador = document.querySelector('#jugador-cartas'),
           divCartasComputadora = document.querySelector('#computadora-cartas'); */
     // Este juego inicializa el juego
-    const iniciaizarJuego = (numJugadores = 1) => {
+    const inicializarJuego = (numJugadores = 1) => {
        deck = crearDeck();
-       console.log(puntosJugadores);
+       console.log(deck);
+       puntosJugadores = [];
+       for (let i = 0; i< numJugadores; i++){
+           puntosJugadores.push(0);
+       }
+        console.log(deck);
+        // reseteo los puntos en pantalla
+        //resultadoHTML[0].innerText = 0;
+        //resultadoHTML[1].innerText = 0;
+        //divCartasJugadores[0].innerHTML = '';
+        //divCartasJugadores[divCartasJugadores.length-1].innerHTML = '';
+        resultadoHTML.forEach(elem=>elem.innerText = 0);
+        divCartasJugadores.forEach(elem=>elem.innerHTML='');
+        // reseteo los puntos de la logica
+        puntosJugadores=[0,0];
+        // deshabilito botones
+        btnbtnDetener.disabled = false;
+        btnPedir.disabled = false;
+        
     };
 
     const crearDeck = () => {
@@ -138,12 +156,11 @@
     // Turno computadora
     const turnoComputadora = (puntosMinimos) => {
 
-
+        //let puntosComputadora = 0;
         do {
-            const carta = pedirCarta();
-            const puntosComputadora = acumularPuntos(carta, puntosJugadores.length-1);
-    
             // resultado de la computadora
+            const carta = pedirCarta();
+            puntosComputadora = acumularPuntos(carta, puntosJugadores.length-1);
             resultadoHTML[1].innerText = puntosComputadora;
             crearCarta(carta,  puntosJugadores.length-1);
             if (puntosMinimos > 21){
@@ -160,7 +177,7 @@
     btnPedir.addEventListener('click', ()=>{
 
         const carta = pedirCarta();
-        let puntosJugador = acumularPuntos(carta, 0);
+        const puntosJugador = acumularPuntos(carta, 0);
         resultadoHTML[0].innerText = puntosJugador;
         crearCarta(carta, 0);
         // Adicionar imagen de la carta al DOM
@@ -192,36 +209,22 @@
         btnPedir.disabled = true;
         btnDetener.disabled = true;
         divCartasJugadores[0].remove;
-        divCartasJugadoreslength.remove;
+        divCartasJugadores.length.remove;
         //puntosJugador = 0;
         //puntosComputadora = 0;
         puntosJugadores = [0,0]
     });
 
     // Logica del boton de nuevo juego
-    btnNuevo.addEventListener('click', ()=>{
-
-        
+/*     btnNuevo.addEventListener('click', ()=>{
         // limpiar consola
         console.clear();
-        iniciaizarJuego();
-        // reseteo el deck
-        deck = [];
-        deck = crearDeck();
-        console.log(deck);
-        // reseteo los puntos en pantalla
-        resultadoHTML[0].innerText = 0;
-        resultadoHTML[1].innerText = 0;
-        // reseteo los puntos de la logica
-        puntosJugadores=[0,0];
-        // deshabilito botones
-        btnPedir.disabled = false;
-        btnbtnDetener.disabled = false;
-        // limpio la pantalla de las cartas
-        divCartasJugadores[0].innerHTML = '';
-        divCartasJugadores.length.innerHTML = '';
-    });
-  
+        inicializarJuego();
+    }); */
+    
+    return {
+        nuevoJuego: inicializarJuego
+    };
 
-//})();
+})();
 
